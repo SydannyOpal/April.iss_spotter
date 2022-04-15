@@ -1,4 +1,8 @@
-const { fetchMyIP } = require('./iss');
+const request = require("request");
+const { calculateMac } = require("request/lib/hawk");
+
+const  myFun  = require('./iss');
+var ipAdd;
 const myCustomConsolelog = (error, ip) => {
   
   if (error) {
@@ -6,7 +10,10 @@ const myCustomConsolelog = (error, ip) => {
     return;
   }
 
+  ipAdd = ip;
   console.log('It worked! Returned IP:' , ip);
+  myFun.fetchCoordsByIP(ipAdd);
 
 };
-fetchMyIP(myCustomConsolelog);
+myFun.fetchMyIP(myCustomConsolelog);
+
